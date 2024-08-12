@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const Keyboard = () => {
   const [input, setInput] = useState("");
   const [caps, setCaps] = useState(false);
+
   const handleOnClick = (value) => {
     setInput((prev) => prev + value);
   };
@@ -12,8 +13,7 @@ const Keyboard = () => {
   };
 
   const handleDeleteBtn = () => {
-    let removeLastChar = input;
-    setInput(removeLastChar.slice(0, -1));
+    setInput((prev) => prev.slice(0, -1));
   };
 
   const handleSpaceKey = () => {
@@ -29,12 +29,14 @@ const Keyboard = () => {
   const keyRow3 = ["z", "x", "c", "v", "b", "n", "m"];
 
   const buttonClasses =
-    "w-20 p-4 bg-blue-500 text-white rounded hover:bg-blue-700 text-xl";
+    "flex-1 p-2 sm:p-3 md:p-4 bg-blue-500 text-white rounded hover:bg-blue-700 text-sm sm:text-base md:text-xl";
+  const specialButtonClasses =
+    "flex-1 p-2 sm:p-3 md:p-4 bg-black text-white rounded text-sm sm:text-base md:text-xl";
+  const delClear =
+    "flex-1 p-2 sm:p-3 md:p-4 bg-red-500 text-white rounded text-sm sm:text-base md:text-xl";
 
-  const specialButtonClasses = "w-20 p-4 bg-black text-white rounded text-xl";
-  const delClear = "w-20 p-4 bg-red-500 text-white rounded text-xl";
   return (
-    <div className="p-4 bg-white rounded shadow-lg">
+    <div className="p-4 bg-white rounded shadow-lg max-w-full">
       <input
         type="text"
         id="inputBox"
@@ -45,7 +47,7 @@ const Keyboard = () => {
       />
 
       <div className="flex justify-center items-center gap-1 flex-col">
-        <div className="flex gap-1">
+        <div className="flex gap-1 w-full">
           <button className={specialButtonClasses}>tab</button>
           {keyRow1.map((key) => (
             <button
@@ -60,10 +62,10 @@ const Keyboard = () => {
             delete
           </button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 w-full">
           <button className={specialButtonClasses} onClick={handleCaps}>
             {caps ? (
-              <span className={`text-green-400 duration-150`}>Caps</span>
+              <span className="text-green-400 duration-150">Caps</span>
             ) : (
               <span>Caps</span>
             )}
@@ -79,7 +81,7 @@ const Keyboard = () => {
           ))}
           <button className={specialButtonClasses}>enter</button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 w-full">
           <button className={specialButtonClasses}>shift</button>
           {keyRow3.map((key) => (
             <button
@@ -92,9 +94,9 @@ const Keyboard = () => {
           ))}
           <button className={specialButtonClasses}>shift</button>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-1 w-full">
           <button
-            className="px-60 bg-blue-500 hover:bg-blue-700 text-white rounded text-xl"
+            className="flex-1 px-4 sm:px-12 md:px-20 lg:px-40 bg-blue-500 hover:bg-blue-700 text-white rounded text-sm sm:text-base md:text-xl"
             onClick={handleSpaceKey}
           >
             space
